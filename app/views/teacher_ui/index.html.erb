@@ -1,0 +1,94 @@
+<div class="menu" style="margin-left: 280px;">
+  <ul>
+    <li><%= link_to :'Home', :controller => :teacher_ui,  :action => :index %></li>
+    <li><%= link_to :'My Profile', :controller => :teacher_ui,  :action => :my_profile %></li>
+    <li><%= link_to :'Edit Profile', :controller => :teacher_ui,  :action => :edit_profile %></li>
+    <li><%= link_to :'Enrol List', :controller => :teacher_ui,  :action => :enrol_list %></li>
+    <li><%= link_to :'Grading', :controller => :teacher_ui,  :action => :grading %></li>
+    <li><%= link_to :'Logout', :controller => :sessions_teacher,  :action => :logout_teacher %></li>
+  </ul>
+</div>
+<%= image_tag(Teacher.find(session[:teacher_id]).profil_image, :size => "50x50", :alt => "Show Group", :style => "float:right;margin-right:10px;margin-top:10px;") %><br clear="left"/>
+<p style="float:right;margin-right:-50px;margin-top:10px;"><b><%= Teacher.find(session[:teacher_id]).name %></b></p>
+<br clear="left"/><br>
+<hr>
+<div style="margin-left: 250px;margin-right: 250px;">
+<% if @course %>
+<div class="blogs">
+    <ul>
+        <li>
+            <div>
+                <span class="time"> <%= @course.created_at %> </span>
+                <h1><b><%= @course.no %> - <%= @course.name %></b></h1>
+                <p>
+                    <%= @course.explain %>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<h2 style="background-color: #D4D5D6;padding-top: 15px;"><b> &nbsp;&nbsp;&nbsp;Lectures </b></h2>
+<div class="blogs">
+  <ul>
+    <li>
+      <div>
+      <% @lectures.each do |lecture| %>
+        <span class="time"> <%= lecture.created_at %> </span>
+            &nbsp;&nbsp;&nbsp;=>&nbsp;&nbsp;<%= link_to :"#{lecture.name}", :controller => :student_ui, :action => :downloadFile, :name => lecture.name %><br>
+      <% end %>
+        <%= form_tag({:action => 'upload_lecture_file'}, :multipart => true) do %>
+            <label>Select Lecture</label> : <%= file_field 'upload', 'datafile' %>
+            <%= submit_tag "Upload" %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<h2 style="background-color: #D4D5D6;padding-top: 15px;"><b> &nbsp;&nbsp;&nbsp;Projects </b></h2>
+<div class="blogs">
+  <ul>
+    <% @projects.each do |project| %>
+        <li>
+          <div>
+            <span class="time"> <%= project.created_at %> </span>
+            <h4><b><%= project.name %></b></h4>
+            <p>
+              <%= project.explain %>
+            </p>
+
+            <% @files.each do |file| %>
+                <% if file.project_no == project.id.to_s %>
+                    &nbsp;&nbsp;&nbsp;=> &nbsp;&nbsp;<%= link_to :"#{file.name}", :controller => :student_ui, :action => :downloadFile, :name => file.name %><br>
+                <% end %>
+            <% end %>
+
+            <%= form_tag({:action => 'upload_project_file'}, :multipart => true) do %>
+                <label>Select Project File</label> : <%= file_field 'upload', 'datafile' %>
+                <%= hidden_field_tag 'project_id', project.id %>
+                <%= submit_tag "Upload" %>
+            <% end %>
+          </div>
+        </li>
+    <% end %>
+    <li>
+      <div>
+        <b><%= link_to :'Add Project', :controller => :teacher_ui,  :action => :add_project %><br></b>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<% else %>
+    <div class="blogs">
+        <ul>
+          <li>
+            <div>
+              <%= link_to :'Create new course', :controller => :teacher_ui,  :action => :create_new_course %>
+            </div>
+          </li>
+        </ul>
+    </div>
+<% end %>
+</div>

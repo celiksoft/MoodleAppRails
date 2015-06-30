@@ -1,0 +1,18 @@
+<div class="menu" style="margin-left: 300px;">
+    <ul>
+        <li><%= link_to :Login , :login_teacher, class: "nav_links"%></li>
+        <li><%= link_to :Signup , :signup_teacher, class: "nav_links"%></li>
+    </ul>
+</div>
+
+<div class="container">
+    <%= form_tag(:action => 'login_teacher_control') do %>
+        <label>E-mail:</label>
+        <%= text_field_tag(:email) %>
+
+        <label>Password:</label>
+        <%= password_field_tag(:password) %>
+
+        <%= submit_tag("Log In") %>
+    <% end %>
+</div>
