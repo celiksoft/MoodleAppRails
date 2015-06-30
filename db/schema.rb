@@ -14,38 +14,38 @@
 ActiveRecord::Schema.define(version: 20150503075608) do
 
   create_table "course_lecture_to_files", force: true do |t|
-    t.text     "course_no"
-    t.text     "file_no"
+    t.string   "course_no"
+    t.string   "file_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "course_to_projects", force: true do |t|
-    t.text     "course_no"
-    t.text     "project_no"
+    t.string   "course_no"
+    t.string   "project_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "course_to_student_notes", force: true do |t|
-    t.text     "course_no"
-    t.text     "note"
-    t.text     "student_no"
+    t.string   "course_no"
+    t.string   "note"
+    t.string   "student_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "course_to_students", force: true do |t|
-    t.text     "course_no"
-    t.text     "student_no"
+    t.string   "course_no"
+    t.string   "student_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "courses", force: true do |t|
-    t.text     "name"
-    t.text     "no"
-    t.text     "teacher_no"
+    t.string   "name"
+    t.string   "no"
+    t.string   "teacher_no"
     t.text     "explain"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -68,49 +68,49 @@ ActiveRecord::Schema.define(version: 20150503075608) do
   end
 
   create_table "project_to_files", force: true do |t|
-    t.text     "project_no"
-    t.text     "file_no"
+    t.string   "project_no"
+    t.string   "file_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "project_to_student_notes", force: true do |t|
-    t.text     "note"
-    t.text     "project_no"
-    t.text     "student_no"
+    t.string   "note"
+    t.string   "project_no"
+    t.string   "student_no"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "projects", force: true do |t|
-    t.text     "explain"
-    t.text     "name"
+    t.string   "explain"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "records", force: true do |t|
-    t.text     "name"
-    t.text     "path"
+    t.string   "name"
+    t.string   "path"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "students", force: true do |t|
-    t.text     "email"
-    t.text     "name"
-    t.text     "password"
-    t.text     "profil_image"
-    t.text     "student_number"
+    t.string   "email"
+    t.string   "name"
+    t.string   "password"
+    t.string   "profil_image"
+    t.string   "student_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "teachers", force: true do |t|
-    t.text     "email"
-    t.text     "name"
-    t.text     "password"
-    t.text     "profil_image"
+    t.string   "email"
+    t.string   "name"
+    t.string   "password"
+    t.string   "profil_image"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
